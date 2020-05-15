@@ -60,7 +60,7 @@ fn handle_connection(mut stream: TcpStream) -> Result<(), bool> {
         Ok(request) => {
             for route in routes.iter() {
                 if route.0.as_str() == request.uri {
-                    let response = format!("{}{}", "HTTP/2.0 200 OK\r\n\r\n", route.1());
+                    let response = format!("{}{}", "HTTP/1.1 200 OK\r\n\r\n", route.1());
                     stream.write(response.as_bytes()).unwrap();
                     stream.flush().unwrap();
                 }
